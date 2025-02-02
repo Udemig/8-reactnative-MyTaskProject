@@ -3,6 +3,7 @@ import {screenStyle} from '../../styles/screenStyle';
 import {AppColors} from '../../theme/color';
 import Button from '../../components/uı/button';
 import {useState} from 'react';
+import {getRandomNumber} from '../../utils/functions';
 
 const AddNote = ({route}) => {
   const {note, type} = route.params;
@@ -16,6 +17,18 @@ const AddNote = ({route}) => {
   const saveNote = () => {
     if (!title) setTitleRequired(true);
     if (!description) setDescriptionRequired(true);
+    if (title && description) {
+      setTitleRequired(false);
+      setDescriptionRequired(false);
+    }
+    const form = {
+      id: getRandomNumber(1, 100),
+      title: title,
+      description: description,
+      date: '12:30',
+    };
+
+    console.warn(form);
   };
 
   return (
